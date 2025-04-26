@@ -19,7 +19,7 @@ def pdf2txt(pdf_path: str):
     number_regex = r"\s(\d*,*\d*,*\d*,*\d*\.\d+)"
     # 01 Jan, 20 Aug, 31 Dec
     date_regex = r"(\d{2}\s[A-Z][a-z]{2})"
-    with open(output_path, "w") as output:
+    with open(output_path, "w", encoding="utf-8") as output:
         with pdfplumber.open(input_path) as pdf:
             merged_line = []
             for page in pdf.pages:
@@ -112,4 +112,4 @@ def write_results_csv(dictionary: dict[str, list[str]]):
 if __name__ == "__main__":
     pdfs2txt(documentsInFolder("documents"))
     print_results(KEYWORDS_DICT)
-    # write_results_csv(KEYWORDS_DICT)
+    write_results_csv(KEYWORDS_DICT)
